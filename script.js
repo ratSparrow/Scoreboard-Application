@@ -1,7 +1,37 @@
+const initialState = {
+    score: 0
+}
+
+function scoreReducer(state = initialState, action) {
+    if (action.type === 'increment') {
+        return {
+            ...state,
+            score: state.score + action.payload
+        }
+    }
+    else if (action.type === 'decrement') {
+        return {
+            ...state,
+            score: state.score - action.payload
+        }
+    }
+    if (action.type === 'increment') {
+        return {
+            ...state,
+        }
+    }
+}
+
+// const store = Redux.createStore(scoreReducer)
+
+
+
+
+
 const addMatchBtn = document.getElementById('addMatchBtn');
 const allMatches = document.getElementById('allMatches');
 
-let matchCount = 0; // Keeps track of the number of matches
+let matchCount = 1; // Keeps track of the number of matches
 
 addMatchBtn.addEventListener('click', () => {
     matchCount++;
@@ -64,4 +94,17 @@ addMatchBtn.addEventListener('click', () => {
 
     // Append to the container
     allMatches.appendChild(matchDiv);
+
+    // Add event listener to get input values
+    incrementForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+        const incrementValue = incrementForm.querySelector('.lws-increment').value;
+        console.log(incrementValue)
+    });
+
+    decrementForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+        const decrementValue = decrementForm.querySelector('.lws-decrement').value;
+        console.log(decrementForm)
+    });
 });
